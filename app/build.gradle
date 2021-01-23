@@ -46,5 +46,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC'
 
+    implementation "androidx.preference:preference-ktx:1.1.1"
     implementation 'com.google.android.gms:play-services-vision:11.0.2'
 }
