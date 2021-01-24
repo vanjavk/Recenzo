@@ -59,14 +59,14 @@ class MainActivity : AppCompatActivity() {
     private fun loadData() {
         val jsonResponse = URL("https://privateip1337.lets.ee:8443/product").readText()
         //println(jsonResponse)
-        val obj: Product = Json.decodeFromString(
-            Product.serializer(),
-            jsonResponse
-        )
-        //println(obj)
-
-        tvDescription.text = obj.description
-        tvTitle.text = obj.id.toString()
+//        val obj: Product = Json.decodeFromString(
+//            Product.serializer(),
+//            jsonResponse
+//        )
+//        //println(obj)
+//
+//        tvDescription.text = obj.description
+//        tvTitle.text = obj.id.toString()
     }
 
     private fun initialiseDetectorsAndSources() {
