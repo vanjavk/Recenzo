@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         )
         //println(obj)
 
-        tvDescription.text = obj.decription
+        tvDescription.text = obj.description
         tvTitle.text = obj.id.toString()
     }
 

@@ -22,16 +22,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Recenzo">
+
         <activity
             android:name=".SplashScreenActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/SplashScreenTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".MainActivity">
@@ -41,6 +37,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".HostActivity" />
+
+        <service
+            android:name=".RecenzoService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver
+            android:name=".RecenzoReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
+        <provider
+            android:name=".RecenzoProvider"
+            android:authorities="me.vanjavk.recenzo.api.provider"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>

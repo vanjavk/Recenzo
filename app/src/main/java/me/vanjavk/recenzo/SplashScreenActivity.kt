@@ -25,7 +25,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun startAnimations() {
         ivSplash.applyAnimation(R.anim.rotate)
-        tvSplash.applyAnimation(R.anim.blink)
+        tvSplash.applyAnimation(R.anim.enlarge)
     }
 
     private fun redirect() {
@@ -38,8 +38,8 @@ class SplashScreenActivity : AppCompatActivity() {
         } else {
             if (isOnline()) {
                 // start service
-                Intent(this, NasaService::class.java).apply {
-                    NasaService.enqueueWork(this@SplashScreenActivity, this)
+                Intent(this, RecenzoService::class.java).apply {
+                    RecenzoService.enqueueWork(this@SplashScreenActivity, this)
                 }
             } else {
                 Toast.makeText(this, getString(R.string.please_connect_to_the_internet), Toast.LENGTH_SHORT).show()

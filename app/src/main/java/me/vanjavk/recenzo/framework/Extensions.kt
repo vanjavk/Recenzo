@@ -44,24 +44,24 @@ fun Context.isOnline() : Boolean {
     return false
 }
 
-fun Context.fetchItems() : MutableList<Item> {
-    val items = mutableListOf<Item>()
-    val cursor = contentResolver?.query(NASA_PROVIDER_CONTENT_URI,
-        null, null, null, null)
-    if (cursor != null) {
-        while(cursor.moveToNext()) {
-            items.add(
-                Item(
-                    cursor.getLong(cursor.getColumnIndex(Item::_id.name)),
-                    cursor.getString(cursor.getColumnIndex(Item::title.name)),
-                    cursor.getString(cursor.getColumnIndex(Item::explanation.name)),
-                    cursor.getString(cursor.getColumnIndex(Item::picturePath.name)),
-                    cursor.getString(cursor.getColumnIndex(Item::date.name)),
-                    cursor.getInt(cursor.getColumnIndex(Item::read.name)) == 1
-                )
-            )
-        }
-    }
-
-    return items
-}
+//fun Context.fetchItems() : MutableList<Item> {
+//    val items = mutableListOf<Item>()
+//    val cursor = contentResolver?.query(NASA_PROVIDER_CONTENT_URI,
+//        null, null, null, null)
+//    if (cursor != null) {
+//        while(cursor.moveToNext()) {
+//            items.add(
+//                Item(
+//                    cursor.getLong(cursor.getColumnIndex(Item::_id.name)),
+//                    cursor.getString(cursor.getColumnIndex(Item::title.name)),
+//                    cursor.getString(cursor.getColumnIndex(Item::explanation.name)),
+//                    cursor.getString(cursor.getColumnIndex(Item::picturePath.name)),
+//                    cursor.getString(cursor.getColumnIndex(Item::date.name)),
+//                    cursor.getInt(cursor.getColumnIndex(Item::read.name)) == 1
+//                )
+//            )
+//        }
+//    }
+//
+//    return items
+//}
