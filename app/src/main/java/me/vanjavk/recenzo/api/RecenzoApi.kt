@@ -3,8 +3,8 @@ package me.vanjavk.recenzo.api
 import retrofit2.Call
 import retrofit2.http.GET
 
-const val API_URL = "https://api.nasa.gov/planetary/"
+const val API_URL = "https://privateip1337.lets.ee:8443/"
 interface RecenzoApi {
-    @GET("apod?api_key=DEMO_KEY&count=10")
+    @GET("products")
     fun fetchItems() : Call<List<RecenzoProduct>>
 }

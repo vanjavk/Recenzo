@@ -3,6 +3,8 @@ package me.vanjavk.recenzo
 import android.content.*
 import android.database.Cursor
 import android.net.Uri
+import me.vanjavk.recenzo.dao.RecenzoRepository
+import me.vanjavk.recenzo.factory.getRecenzoRepository
 import me.vanjavk.recenzo.model.Product
 import java.lang.IllegalArgumentException
 
@@ -25,7 +27,7 @@ private val URI_MATCHER = with(UriMatcher(UriMatcher.NO_MATCH)) {
 private const val CONTENT_DIR_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + AUTHORITY + "/" + PATH
 private const val CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + AUTHORITY + "/" + PATH
 
-class NasaProvider : ContentProvider() {
+class RecenzoProvider : ContentProvider() {
 
     private lateinit var repository: RecenzoRepository
 

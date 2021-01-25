@@ -9,7 +9,7 @@ private const val JOB_ID = 1
 
 class RecenzoService : JobIntentService() {
     override fun onHandleWork(intent: Intent) {
-//        RecenzoFetcher(this).fetchItems()
+        RecenzoFetcher(this).fetchItems()
     }
     companion object { // convenience
         fun enqueueWork(context: Context, intent: Intent) {

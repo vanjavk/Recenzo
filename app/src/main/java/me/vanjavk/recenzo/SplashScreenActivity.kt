@@ -13,7 +13,7 @@ import me.vanjavk.recenzo.framework.startActivity
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 private const val DELAY : Long = 3000
-const val DATA_IMPORTED  = "hr.algebra.nasa.data_imported"
+const val DATA_IMPORTED  = "me.vanjavk.recenzo.data_imported"
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

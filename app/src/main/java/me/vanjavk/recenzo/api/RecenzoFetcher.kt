@@ -8,6 +8,9 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
+import me.vanjavk.recenzo.RECENZO_PROVIDER_CONTENT_URI
+import me.vanjavk.recenzo.RecenzoReceiver
+import me.vanjavk.recenzo.framework.sendBroadcast
 import me.vanjavk.recenzo.handler.downloadImageAndStore
 import me.vanjavk.recenzo.model.Product
 import okhttp3.MediaType
@@ -20,6 +23,7 @@ import retrofit2.Retrofit
 class RecenzoFetcher(private val context: Context) {
 
     private var recenzoApi: RecenzoApi
+
     init {
 //        val retrofit = Retrofit.Builder()
 //            .baseUrl(API_URL)
@@ -30,7 +34,7 @@ class RecenzoFetcher(private val context: Context) {
         val contentType = MediaType.get("application/json")
         val retrofit = Retrofit.Builder()
             .baseUrl(API_URL)
-            .addConverterFactory(Json.asConverterFactory(contentType))
+            .addConverterFactory(Json { ignoreUnknownKeys = true }.asConverterFactory(contentType))
             .build()
         recenzoApi = retrofit.create(RecenzoApi::class.java)
     }
@@ -38,7 +42,7 @@ class RecenzoFetcher(private val context: Context) {
     fun fetchItems() {
         val request = recenzoApi.fetchItems()
         // izvrsiti u backgroundu
-        request.enqueue(object: Callback<List<RecenzoProduct>>{
+        request.enqueue(object : Callback<List<RecenzoProduct>> {
 
             override fun onResponse(
                 call: Call<List<RecenzoProduct>>,
@@ -61,14 +65,15 @@ class RecenzoFetcher(private val context: Context) {
         // coroutines!!!
         GlobalScope.launch {
             nasaItems.forEach {
-                val picturePath = downloadImageAndStore(context, it.picturePath, it.title.replace(" ", "_") )
+                val picturePath =
+                    downloadImageAndStore(context,API_URL+ it.picturePath, it.title.replace(" ", "_"))
                 val values = ContentValues().apply {
                     put(Product::_id.name, it.id)
                     put(Product::title.name, it.title)
                     put(Product::description.name, it.description)
                     put(Product::picturePath.name, picturePath ?: "")
                 }
-                context.contentResolver.insert(NASA_PROVIDER_CONTENT_URI, values)
+                context.contentResolver.insert(RECENZO_PROVIDER_CONTENT_URI, values)
             }
             // obavijesti da si gotov
             context.sendBroadcast<RecenzoReceiver>()
