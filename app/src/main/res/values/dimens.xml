@@ -3,4 +3,7 @@
     <dimen name="splashPaddingMain">40dp</dimen>
     <dimen name="splashIvHeight">400dp</dimen>
     <dimen name="splashTextSize">30sp</dimen>
+    <dimen name="nvMarginTop">25dp</dimen>
+    <dimen name="heightNavHeader">100dp</dimen>
+    <dimen name="widthNavHeader">150dp</dimen>
 </resources>

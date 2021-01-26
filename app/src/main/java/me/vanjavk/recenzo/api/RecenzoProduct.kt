@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RecenzoProduct(
     val id: Long = -1,
+    val barcode: String = "",
     val title: String = "",
     val description: String = "",
     @SerializedName("image") val picturePath: String = "",

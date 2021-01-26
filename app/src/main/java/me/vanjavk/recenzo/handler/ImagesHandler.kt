@@ -23,7 +23,6 @@ fun downloadImageAndStore(context: Context, url: String, fileName: String) : Str
         extension = url.substring(url.lastIndexOf(".")); // .jpeg
     }catch (e: Exception){}
     val file: File = getFile(context, fileName, extension)
-    println(url)
     try {
         // moram otvoriti konekciju na url!!
         val con: HttpURLConnection = createGetHttpUrlConnection(url)

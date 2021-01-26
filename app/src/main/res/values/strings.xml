@@ -2,4 +2,11 @@
     <string name="app_name">Recenzo</string>
     <string name="recenzo">RECENZO</string>
     <string name="please_connect_to_the_internet">Please connect to the internet</string>
+    <string name="items">Items</string>
+    <string name="about">About</string>
+    <string name="exit">Exit</string>
+    <string name="really">Really exit app?</string>
+    <string name="delete">Delete</string>
+    <string name="really_delete">Really delete</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -59,12 +59,14 @@ class RecenzoFetcher(private val context: Context) {
         })
     }
 
-    private fun populateItems(nasaItems: List<RecenzoProduct>) {
+    private fun populateItems(recenzoItems: List<RecenzoProduct>) {
         // vratio sam se u foreground
         // moram opet u background
         // coroutines!!!
         GlobalScope.launch {
-            nasaItems.forEach {
+            recenzoItems.forEach {
+                println(it.barcode)
+                println(it)
                 val picturePath =
                     downloadImageAndStore(context,API_URL+ it.picturePath, it.title.replace(" ", "_"))
                 val values = ContentValues().apply {
