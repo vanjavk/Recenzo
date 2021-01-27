@@ -18,7 +18,6 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-
         startAnimations()
         redirect()
     }
@@ -30,22 +29,21 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun redirect() {
 
-        if (getBooleanPreference(DATA_IMPORTED)) {
-            Handler(Looper.getMainLooper()).postDelayed(
-                {startActivity<HostActivity>()},
-                DELAY
-            )
-        } else {
-            if (isOnline()) {
-                // start service
-                Intent(this, RecenzoService::class.java).apply {
-                    RecenzoService.enqueueWork(this@SplashScreenActivity, this)
-                }
-            } else {
-                Toast.makeText(this, getString(R.string.please_connect_to_the_internet), Toast.LENGTH_SHORT).show()
-                finish()
+//        if (getBooleanPreference(DATA_IMPORTED)) {
+//            Handler(Looper.getMainLooper()).postDelayed(
+//                {startActivity<HostActivity>()},
+//                DELAY
+//            )
+//        } else {
+        if (isOnline()) {
+            // start service
+            Intent(this, RecenzoService::class.java).apply {
+                RecenzoService.enqueueWork(this@SplashScreenActivity, this)
             }
+        } else {
+            Toast.makeText(this, getString(R.string.please_connect_to_the_internet), Toast.LENGTH_SHORT).show()
+            finish()
         }
-
+//        }
     }
 }

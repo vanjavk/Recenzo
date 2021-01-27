@@ -1,7 +1,5 @@
-package me.vanjavk.recenzo
+package me.vanjavk.recenzo.items
 
-import android.content.ContentUris
-import android.content.ContentValues
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.product_pager.view.*
+import me.vanjavk.recenzo.R
 import me.vanjavk.recenzo.model.Product
 import java.io.File
 

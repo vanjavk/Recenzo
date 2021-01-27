@@ -13,6 +13,7 @@ private const val DB_VERSION = 1
 private const val TABLE_NAME = "items"
 private val CREATE_TABLE = "create table $TABLE_NAME( " +
         "${Product::_id.name} integer primary key autoincrement, " +
+        "${Product::barcode.name} text not null, " +
         "${Product::title.name} text not null, " +
         "${Product::description.name} text not null, " +
         "${Product::picturePath.name} text not null " +

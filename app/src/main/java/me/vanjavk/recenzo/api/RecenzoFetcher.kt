@@ -41,6 +41,7 @@ class RecenzoFetcher(private val context: Context) {
 
     fun fetchItems() {
         val request = recenzoApi.fetchItems()
+        println("fetachaaaaam")
         // izvrsiti u backgroundu
         request.enqueue(object : Callback<List<RecenzoProduct>> {
 
@@ -65,12 +66,11 @@ class RecenzoFetcher(private val context: Context) {
         // coroutines!!!
         GlobalScope.launch {
             recenzoItems.forEach {
-                println(it.barcode)
                 println(it)
                 val picturePath =
                     downloadImageAndStore(context,API_URL+ it.picturePath, it.title.replace(" ", "_"))
                 val values = ContentValues().apply {
-                    put(Product::_id.name, it.id)
+                    put(Product::barcode.name, it.barcode)
                     put(Product::title.name, it.title)
                     put(Product::description.name, it.description)
                     put(Product::picturePath.name, picturePath ?: "")

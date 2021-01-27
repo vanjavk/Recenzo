@@ -1,4 +1,4 @@
-package me.vanjavk.recenzo
+package me.vanjavk.recenzo.items
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import hr.algebra.nasa.framework.fetchItems
-import hr.algebra.nasa.model.Item
-import kotlinx.android.synthetic.main.fragment_items.*
+import kotlinx.android.synthetic.main.fragment_products.*
+import me.vanjavk.recenzo.R
+import me.vanjavk.recenzo.framework.fetchItems
 import me.vanjavk.recenzo.model.Product
 
 
@@ -21,7 +21,7 @@ class ProductsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         products = requireContext().fetchItems()
-        return inflater.inflate(R.layout.fragment_items, container, false)
+        return inflater.inflate(R.layout.fragment_products, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

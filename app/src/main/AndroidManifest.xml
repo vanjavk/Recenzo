@@ -35,10 +35,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity"/>
 
         <activity android:name=".HostActivity" />
+
+        <activity android:name=".items.ProductPagerActivity"></activity>
 
         <service
             android:name=".RecenzoService"
@@ -56,6 +57,8 @@
             android:authorities="me.vanjavk.recenzo.api.provider"
             android:enabled="true"
             android:exported="false" />
+
+
     </application>
 
 </manifest>

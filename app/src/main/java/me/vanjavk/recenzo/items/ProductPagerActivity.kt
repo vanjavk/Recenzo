@@ -1,8 +1,9 @@
-package me.vanjavk.recenzo
+package me.vanjavk.recenzo.items
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_item_pager.*
+import kotlinx.android.synthetic.main.activity_product_pager.*
+import me.vanjavk.recenzo.R
 import me.vanjavk.recenzo.framework.fetchItems
 import me.vanjavk.recenzo.model.Product
 

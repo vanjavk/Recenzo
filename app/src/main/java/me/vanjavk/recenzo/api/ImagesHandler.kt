@@ -19,14 +19,13 @@ private const val TAG = "ImagesHandler"
 fun downloadImageAndStore(context: Context, url: String, fileName: String) : String? {
     // ext
     var extension = "";
-    try {
-        extension = url.substring(url.lastIndexOf(".")); // .jpeg
-    }catch (e: Exception){}
+//    try {
+//        extension = url.substring(url.lastIndexOf(".")); // .jpeg
+//    }catch (e: Exception){}
     val file: File = getFile(context, fileName, extension)
     try {
         // moram otvoriti konekciju na url!!
         val con: HttpURLConnection = createGetHttpUrlConnection(url)
-        println(url)
         // inpustream prema url da citam
         // outputstream prema file da pisem
         con.inputStream.use {`is` ->

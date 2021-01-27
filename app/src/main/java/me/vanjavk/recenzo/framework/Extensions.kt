@@ -47,12 +47,13 @@ fun Context.isOnline() : Boolean {
 }
 
 fun Context.fetchItems() : MutableList<Product> {
-    val items = mutableListOf<Product>()
+    val products = mutableListOf<Product>()
     val cursor = contentResolver?.query(RECENZO_PROVIDER_CONTENT_URI,
         null, null, null, null)
     if (cursor != null) {
         while(cursor.moveToNext()) {
-            items.add(
+            println(cursor.getString(cursor.getColumnIndex(Product::barcode.name)))
+            products.add(
                 Product(
                     cursor.getLong(cursor.getColumnIndex(Product::_id.name)),
                     cursor.getString(cursor.getColumnIndex(Product::barcode.name)),
@@ -64,5 +65,5 @@ fun Context.fetchItems() : MutableList<Product> {
         }
     }
 
-    return items
+    return products
 }

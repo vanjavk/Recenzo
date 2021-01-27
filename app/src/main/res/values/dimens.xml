@@ -6,4 +6,14 @@
     <dimen name="nvMarginTop">25dp</dimen>
     <dimen name="heightNavHeader">100dp</dimen>
     <dimen name="widthNavHeader">150dp</dimen>
+    <dimen name="ivSize">50dp</dimen>
+    <dimen name="tvSize">20sp</dimen>
+    <dimen name="marginLeft">20dp</dimen>
+    <dimen name="paddingItemPager">10dp</dimen>
+    <dimen name="ivHeight">300dp</dimen>
+    <dimen name="marginTopItemPager">20dp</dimen>
+    <dimen name="paddingAbout">20dp</dimen>
+    <dimen name="tvAboutSize">50sp</dimen>
+    <dimen name="cornerRadius">9dp</dimen>
+    <dimen name="paddingMain">10dp</dimen>
 </resources>

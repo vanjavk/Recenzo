@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/menuItems"
         android:label="@string/items"
-        android:name="me.vanjavk.recenzo.ProductsFragment"
-        tools:layout="@layout/fragment_items"/>
+        android:name="me.vanjavk.recenzo.items.ProductsFragment"
+        tools:layout="@layout/fragment_products"/>
 
     <fragment
         android:id="@+id/menuAbout"
