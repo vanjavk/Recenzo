@@ -19,9 +19,12 @@ fun View.applyAnimation(resourceId: Int) =
 inline fun<reified T: Activity> Context.startActivity() = startActivity(Intent(this, T::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
 
 inline fun<reified T: Activity> Context.startActivity(key: String, value: Int) = startActivity(Intent(this, T::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).apply { putExtra(key, value) })
+inline fun<reified T: Activity> Context.startActivity(key: String, value: String) = startActivity(Intent(this, T::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).apply { putExtra(key, value) })
 
 
 inline fun<reified T: BroadcastReceiver> Context.sendBroadcast() = sendBroadcast(Intent(this, T::class.java))
+
+
 
 fun Context.setBooleanPreference(key: String, value: Boolean) =
     PreferenceManager.getDefaultSharedPreferences(this)

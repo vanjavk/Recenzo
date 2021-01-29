@@ -1,6 +1,6 @@
 package me.vanjavk.recenzo
 
-
+import me.vanjavk.recenzo.framework.startActivity
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
@@ -26,7 +26,11 @@ import kotlinx.android.synthetic.main.fragment_products.*
 import kotlinx.android.synthetic.main.fragment_scan.*
 import kotlinx.android.synthetic.main.product_pager.*
 import me.vanjavk.recenzo.framework.fetchItems
+import me.vanjavk.recenzo.framework.setBooleanPreference
+import me.vanjavk.recenzo.framework.startActivity
+import me.vanjavk.recenzo.items.ITEM_BARCODE
 import me.vanjavk.recenzo.items.ProductAdapter
+import me.vanjavk.recenzo.items.ProductPagerActivity
 import me.vanjavk.recenzo.model.Product
 import java.io.IOException
 import java.net.URL
@@ -88,7 +92,7 @@ class ScanFragment : Fragment() {
                     null, "barcode='${barcode_text.text}'", null, null
                 )
                 if (cursor != null && !(!cursor.moveToFirst() || cursor.getCount() == 0)) {
-                    println(
+                    val product =
                         Product(
                             cursor.getLong(cursor.getColumnIndex(Product::_id.name)),
                             cursor.getString(cursor.getColumnIndex(Product::barcode.name)),
@@ -96,9 +100,12 @@ class ScanFragment : Fragment() {
                             cursor.getString(cursor.getColumnIndex(Product::description.name)),
                             cursor.getString(cursor.getColumnIndex(Product::picturePath.name)),
                         )
-                    )
-                }else{
-                    Toast.makeText(requireContext(), "Product not in database", Toast.LENGTH_SHORT).show();
+
+                    requireContext().startActivity<ProductPagerActivity>(ITEM_BARCODE, product.barcode)
+
+                } else {
+                    Toast.makeText(requireContext(), "Product not in database", Toast.LENGTH_SHORT)
+                        .show();
                 }
             }
 
@@ -189,3 +196,6 @@ class ScanFragment : Fragment() {
     }
 
 }
+
+
+

@@ -41,7 +41,7 @@ class ProductAdapter(private val items: MutableList<Product>, private val contex
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.setOnClickListener{
-            context.startActivity<ProductPagerActivity>(ITEM_POSITION, position)
+            context.startActivity<ProductPagerActivity>(ITEM_BARCODE, position)
         }
 
 //        holder.itemView.setOnLongClickListener{
