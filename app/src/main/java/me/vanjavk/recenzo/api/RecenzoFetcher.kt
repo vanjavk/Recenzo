@@ -4,14 +4,12 @@ import android.content.ContentValues
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
-import com.google.android.material.internal.ContextUtils.getActivity
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import me.vanjavk.recenzo.RECENZO_PROVIDER_CONTENT_URI
-import me.vanjavk.recenzo.RecenzoReceiver
 import me.vanjavk.recenzo.framework.sendBroadcast
 import me.vanjavk.recenzo.handler.downloadImageAndStore
 import me.vanjavk.recenzo.model.Product
@@ -74,7 +72,7 @@ class RecenzoFetcher(private val context: Context) {
             recenzoItems.forEach {
                 println(it)
                 val picturePath =
-                    downloadImageAndStore(context,API_URL+ it.picturePath, it.title.replace(" ", "_"))
+                    downloadImageAndStore(context, it.picturePath, it.title.replace(" ", "_"))
                 val values = ContentValues().apply {
                     put(Product::barcode.name, it.barcode)
                     put(Product::title.name, it.title)

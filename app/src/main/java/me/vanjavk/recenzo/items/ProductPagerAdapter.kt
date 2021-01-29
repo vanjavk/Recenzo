@@ -48,11 +48,14 @@ class ProductPagerAdapter(private val items: MutableList<Product>, private val c
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.product_pager, parent, false)
+
+
         return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var item = items[position]
+
 //        holder.itemView.ivRead.setOnClickListener {
 //            item.read = !item.read
 //            context.contentResolver.update(

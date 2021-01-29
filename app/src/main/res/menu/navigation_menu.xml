@@ -4,8 +4,13 @@
     android:theme="@style/AppTheme">
 
     <item
+        android:id="@+id/menuScan"
+        android:title="@string/scan"
+        android:icon="@drawable/scanner" />
+
+    <item
         android:id="@+id/menuItems"
-        android:title="@string/items"
+        android:title="@string/products"
         android:icon="@drawable/products" />
 
     <item

@@ -12,7 +12,7 @@ import me.vanjavk.recenzo.model.Product
 
 
 // public static
-const val ITEM_POSITION = "hr.algebra.nasa.item_position"
+const val ITEM_POSITION = "me.vanjavk.recenzo.item_position"
 
 class ProductPagerActivity : AppCompatActivity() {
 

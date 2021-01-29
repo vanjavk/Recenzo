@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".ScanFragment"/>
 
         <activity android:name=".HostActivity" />
 
@@ -48,7 +48,7 @@
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <receiver
-            android:name=".RecenzoReceiver"
+            android:name=".api.RecenzoReceiver"
             android:enabled="true"
             android:exported="false" />
 

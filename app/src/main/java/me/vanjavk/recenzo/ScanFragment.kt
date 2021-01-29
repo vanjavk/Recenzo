@@ -7,24 +7,23 @@ import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
 import android.os.StrictMode
-import android.view.SurfaceHolder
-import android.view.SurfaceView
+import android.view.*
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.Detector.Detections
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.serialization.json.Json
-import me.vanjavk.recenzo.model.Product
+import me.vanjavk.recenzo.framework.fetchItems
 import java.io.IOException
 import java.net.URL
 
 
-class MainActivity : AppCompatActivity() {
+class ScanFragment : Fragment() {
     private lateinit var surfaceView: SurfaceView
     private lateinit var barcodeDetector: BarcodeDetector
     private lateinit var cameraSource: CameraSource
@@ -37,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.fragment_scan)
 
         toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
         surfaceView = findViewById(R.id.surface_view)
@@ -49,9 +48,19 @@ class MainActivity : AppCompatActivity() {
 
         setupListeners()
         initialiseDetectorsAndSources()
+
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_scan, container, false)
     }
 
+
     private fun setupListeners() {
+        btnCamera.setOnClickListener { initialiseDetectorsAndSources() }
+
 //        btnLoad.setOnClickListener { loadData() }
 
     }
@@ -76,21 +85,21 @@ class MainActivity : AppCompatActivity() {
             .setBarcodeFormats(Barcode.ALL_FORMATS)
             .build()
         cameraSource = CameraSource.Builder(this, barcodeDetector)
-            .setRequestedPreviewSize(1920, 1080)
+            .setRequestedPreviewSize(1280, 720)
             .setAutoFocusEnabled(true) //you should add this feature
             .build()
         surfaceView.holder.addCallback(object : SurfaceHolder.Callback {
             override fun surfaceCreated(holder: SurfaceHolder) {
                 try {
                     if (ActivityCompat.checkSelfPermission(
-                            this@MainActivity,
+                            this@ScanFragment,
                             Manifest.permission.CAMERA
                         ) == PackageManager.PERMISSION_GRANTED
                     ) {
                         cameraSource.start(surfaceView.holder)
                     } else {
                         ActivityCompat.requestPermissions(
-                            this@MainActivity,
+                            this@ScanFragment,
                             arrayOf(Manifest.permission.CAMERA),
                             REQUEST_CAMERA_PERMISSION
                         )
