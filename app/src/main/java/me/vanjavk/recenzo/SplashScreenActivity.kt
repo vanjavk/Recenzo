@@ -1,5 +1,6 @@
 package me.vanjavk.recenzo
 
+import android.content.ContentUris
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -36,7 +37,8 @@ class SplashScreenActivity : AppCompatActivity() {
 //            )
 //        } else {
         if (isOnline()) {
-            // start service
+            // start service //refresh database
+
             Intent(this, RecenzoService::class.java).apply {
                 RecenzoService.enqueueWork(this@SplashScreenActivity, this)
             }

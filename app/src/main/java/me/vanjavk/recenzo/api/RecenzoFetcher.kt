@@ -3,6 +3,8 @@ package me.vanjavk.recenzo.api
 import android.content.ContentValues
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
+import com.google.android.material.internal.ContextUtils.getActivity
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 
 import kotlinx.coroutines.GlobalScope
@@ -41,7 +43,7 @@ class RecenzoFetcher(private val context: Context) {
 
     fun fetchItems() {
         val request = recenzoApi.fetchItems()
-        println("fetachaaaaam")
+
         // izvrsiti u backgroundu
         request.enqueue(object : Callback<List<RecenzoProduct>> {
 
@@ -50,12 +52,16 @@ class RecenzoFetcher(private val context: Context) {
                 response: Response<List<RecenzoProduct>>
             ) {
                 if (response.body() != null) {
+                    context.contentResolver.delete(
+                        RECENZO_PROVIDER_CONTENT_URI, null, null)
                     populateItems(response.body()!!)
                 }
             }
 
             override fun onFailure(call: Call<List<RecenzoProduct>>, t: Throwable) {
                 Log.d(javaClass.name, t.message, t)
+                Toast.makeText(context,"Internet connection failure. Try restarting application.", Toast.LENGTH_LONG).show()
+                context.sendBroadcast<RecenzoReceiver>()
             }
         })
     }

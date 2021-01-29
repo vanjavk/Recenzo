@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import me.vanjavk.recenzo.model.Product
 
 
-private const val DB_NAME = "items.db"
+private const val DB_NAME = "products.db"
 private const val DB_VERSION = 1
 private const val TABLE_NAME = "items"
 private val CREATE_TABLE = "create table $TABLE_NAME( " +

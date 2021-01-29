@@ -10,7 +10,9 @@
     tools:context=".SplashScreenActivity">
 
     <ImageView
+
         android:id="@+id/ivSplash"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/splashIvHeight"
         android:src="@drawable/star"/>
@@ -19,6 +21,7 @@
         android:id="@+id/tvSplash"
         android:text="@string/recenzo"
         android:textColor="@color/colorAccent"
+        android:textSize="@dimen/recenzoSplashText"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

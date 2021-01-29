@@ -15,7 +15,6 @@ class HostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        println("stigosmo do ovdje")
         setContentView(R.layout.activity_host)
 //setContentView(R.layout.activity_main)
         initHamburgerMenu()

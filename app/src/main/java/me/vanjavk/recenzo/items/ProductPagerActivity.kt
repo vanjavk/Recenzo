@@ -1,11 +1,15 @@
 package me.vanjavk.recenzo.items
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
+import android.widget.TableLayout
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_product_pager.*
 import me.vanjavk.recenzo.R
 import me.vanjavk.recenzo.framework.fetchItems
 import me.vanjavk.recenzo.model.Product
+
 
 // public static
 const val ITEM_POSITION = "hr.algebra.nasa.item_position"
@@ -26,6 +30,7 @@ class ProductPagerActivity : AppCompatActivity() {
     private fun init() {
         products = fetchItems()
         itemPosition = intent.getIntExtra(ITEM_POSITION, 0)
+        viewPager.isUserInputEnabled = false;
         viewPager.adapter = ProductPagerAdapter(products, this)
         viewPager.currentItem = itemPosition
     }
@@ -33,5 +38,9 @@ class ProductPagerActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed() // kao da je netko back pritisnuo
         return super.onSupportNavigateUp()
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        return false;
     }
 }

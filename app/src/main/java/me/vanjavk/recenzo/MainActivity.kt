@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        btnLoad.setOnClickListener { loadData() }
+//        btnLoad.setOnClickListener { loadData() }
 
     }
 

@@ -2,7 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+
+    android:theme="@style/AppTheme">
 
     <LinearLayout
         android:padding="@dimen/paddingItemPager"
@@ -22,7 +24,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="@string/date"
+                android:text="@string/barcode"
                 android:textColor="@android:color/holo_red_dark"
                 android:textStyle="bold"
                 android:layout_width="0dp"
@@ -40,8 +42,8 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvDate"
-            tools:text="yyyy-MM-dd"
+            android:id="@+id/tvBarcode"
+            tools:text="1234567891230"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -67,7 +69,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/tvExplanation"
+            android:id="@+id/tvDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc." />

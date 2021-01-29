@@ -26,11 +26,12 @@ class ProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val itemAdapter = ProductAdapter(products, requireContext())
+        val productAdapter =ProductAdapter(products, requireContext())
         rvItems.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = itemAdapter
+            adapter = productAdapter
         }
+
     }
 
 

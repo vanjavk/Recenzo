@@ -3,6 +3,8 @@
     android:layout_width="@dimen/widthNavHeader"
     android:layout_height="@dimen/heightNavHeader"
     android:layout_marginTop="@dimen/nvMarginTop"
-    android:src="@drawable/star">
+    android:src="@drawable/star"
+
+    android:theme="@style/AppTheme">
 
 </ImageView>

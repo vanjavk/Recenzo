@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="splashPaddingMain">40dp</dimen>
+    <dimen name="splashPaddingMain">30dp</dimen>
     <dimen name="splashIvHeight">400dp</dimen>
     <dimen name="splashTextSize">30sp</dimen>
     <dimen name="nvMarginTop">25dp</dimen>
@@ -16,4 +16,5 @@
     <dimen name="tvAboutSize">50sp</dimen>
     <dimen name="cornerRadius">9dp</dimen>
     <dimen name="paddingMain">10dp</dimen>
+    <dimen name="recenzoSplashText">70sp</dimen>
 </resources>
