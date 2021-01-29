@@ -14,7 +14,7 @@ import me.vanjavk.recenzo.model.Product
 // public static
 const val ITEM_POSITION = "me.vanjavk.recenzo.item_position"
 
-class ProductPagerActivity : AppCompatActivity() {
+class ProductPagerActivity() : AppCompatActivity() {
 
     private lateinit var products: MutableList<Product>
     private var itemPosition: Int = 0

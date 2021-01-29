@@ -14,4 +14,5 @@
     <string name="description">Description</string>
     <string name="aplication_made_by_vanja_buturac">Made by Vanja Buturac</string>
     <string name="scan">Scan barcode</string>
+    <string name="view_product">View product</string>
 </resources>
