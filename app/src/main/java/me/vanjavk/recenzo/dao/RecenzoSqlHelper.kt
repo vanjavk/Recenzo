@@ -17,6 +17,7 @@ private val CREATE_TABLE = "create table $TABLE_NAME( " +
         "${Product::title.name} text not null, " +
         "${Product::description.name} text not null, " +
         "${Product::picturePath.name} text not null " +
+        "${Product::rating.name} integer not null" +
         ")"
 private const val DROP_TABLE = "drop table $TABLE_NAME"
 

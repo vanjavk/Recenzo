@@ -41,21 +41,8 @@ class ProductAdapter(private val items: MutableList<Product>, private val contex
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.setOnClickListener{
-            context.startActivity<ProductPagerActivity>(ITEM_BARCODE, position)
+            context.startActivity<ProductPagerActivity>(ITEM_POSITION, position)
         }
-
-//        holder.itemView.setOnLongClickListener{
-//            AlertDialog.Builder(context).apply {
-//                setTitle(R.string.delete)
-//                setMessage(context.getString(R.string.really_delete) + " ${items[position].title}?")
-//                setIcon(R.drawable.delete)
-//                setCancelable(true)
-//                setPositiveButton("Ok", {_, _ -> deleteItem(position)})
-//                setNegativeButton(context.getString(R.string.cancel), null)
-//                show()
-//            }
-//            true
-//        }
         holder.bind(items[position])
     }
 

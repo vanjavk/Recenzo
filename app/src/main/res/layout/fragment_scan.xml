@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:theme="@style/AppTheme"
     tools:context=".ScanFragment">
 
     <SurfaceView
@@ -21,37 +20,39 @@
     <TextView
         android:id="@+id/barcode_text"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_height="@dimen/btnHeight"
+        android:layout_marginLeft="@dimen/btnMargin"
+        android:layout_marginRight="@dimen/btnMargin"
         app:layout_constraintTop_toBottomOf="@id/surface_view"
-        android:layout_marginTop="5dp"
-        android:text="Barcode Text"
-        android:textSize="25sp"
-        android:padding="5dp"/>
+        android:layout_marginTop="@dimen/btnMarginTop"
+        android:text="Barcode number"
+        android:textSize="@dimen/btnTextSize"
+        android:padding="@dimen/btnPadding"/>
 
     <Button
+        android:textColor="@color/white"
         android:id="@+id/btnCamera"
-        android:text="Camera"
+        android:text="@string/reset_camera"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_height="@dimen/btnHeight"
+        android:layout_marginLeft="@dimen/btnMargin"
+        android:layout_marginRight="@dimen/btnMargin"
         app:layout_constraintTop_toBottomOf="@id/surface_view"
-        android:layout_marginTop="5dp"
-        android:textSize="25sp"
-        android:padding="5dp"/>
+        android:layout_marginTop="@dimen/btnMarginTop"
+        android:textSize="@dimen/btnTextSize"
+        android:padding="@dimen/btnPadding"/>
 
     <Button
+        android:textColor="@color/white"
         android:id="@+id/btnViewProduct"
         android:text="@string/view_product"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_height="@dimen/btnHeight"
+        android:layout_marginLeft="@dimen/btnMargin"
+        android:layout_marginRight="@dimen/btnMargin"
         app:layout_constraintTop_toBottomOf="@id/surface_view"
-        android:layout_marginTop="5dp"
-        android:textSize="25sp"
-        android:padding="5dp"/>
+        android:layout_marginTop="@dimen/btnMarginTop"
+        android:textSize="@dimen/btnTextSize"
+        android:padding="@dimen/btnPadding"/>
 
 </LinearLayout>

@@ -1,9 +1,7 @@
 package me.vanjavk.recenzo.framework
 
 import android.app.Activity
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.view.View
@@ -36,6 +34,17 @@ fun Context.getBooleanPreference(key: String) =
     PreferenceManager.getDefaultSharedPreferences(this)
         .getBoolean(key, false)
 
+fun updateProductRating(context: Context,product:Product){
+    context.contentResolver.update(
+        ContentUris.withAppendedId(RECENZO_PROVIDER_CONTENT_URI, product._id!!),
+        ContentValues().apply {
+            put(Product::rating.name, product.rating)
+        },
+        null,
+        null
+    )
+}
+
 fun Context.isOnline() : Boolean {
     val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val network = connectivityManager.activeNetwork
@@ -49,7 +58,7 @@ fun Context.isOnline() : Boolean {
     return false
 }
 
-fun Context.fetchItems() : MutableList<Product> {
+fun Context.fetchProducts() : MutableList<Product> {
     val products = mutableListOf<Product>()
     val cursor = contentResolver?.query(RECENZO_PROVIDER_CONTENT_URI,
         null, null, null, null)

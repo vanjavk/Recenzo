@@ -2,15 +2,11 @@ package me.vanjavk.recenzo.items
 
 import android.os.Bundle
 import android.view.MotionEvent
-import android.widget.TableLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_product_pager.*
-import kotlinx.android.synthetic.main.fragment_scan.*
 import me.vanjavk.recenzo.R
 import me.vanjavk.recenzo.RECENZO_PROVIDER_CONTENT_URI
-import me.vanjavk.recenzo.framework.fetchItems
+import me.vanjavk.recenzo.framework.fetchProducts
 import me.vanjavk.recenzo.model.Product
 
 
@@ -33,7 +29,12 @@ class ProductPagerActivity() : AppCompatActivity() {
 
     private fun init() {
 
-        val itemBarcode = intent.getStringExtra(ITEM_BARCODE)
+        val itemBarcode:String? = intent.getStringExtra(ITEM_BARCODE)
+        itemPosition = intent.getIntExtra(ITEM_POSITION, 0)
+        println(itemPosition)
+        if (itemBarcode==null){
+            products = fetchProducts()
+        }else{
         val cursor = application.contentResolver.query(
             RECENZO_PROVIDER_CONTENT_URI,
             null, "barcode='${itemBarcode}'", null, null
@@ -47,15 +48,15 @@ class ProductPagerActivity() : AppCompatActivity() {
                     cursor.getString(cursor.getColumnIndex(Product::title.name)),
                     cursor.getString(cursor.getColumnIndex(Product::description.name)),
                     cursor.getString(cursor.getColumnIndex(Product::picturePath.name)),
+                    cursor.getInt(cursor.getColumnIndex(Product::rating.name)),
                 )
         }
         if (product!=null){
             products = mutableListOf(product)
-
-        }
+        }}
         viewPager.isUserInputEnabled = false;
         viewPager.adapter = ProductPagerAdapter(products, this)
-        viewPager.currentItem = 0
+        viewPager.currentItem = itemPosition
     }
 
     override fun onSupportNavigateUp(): Boolean {

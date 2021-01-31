@@ -1,5 +1,7 @@
 package me.vanjavk.recenzo.items
 
+import android.content.ContentUris
+import android.content.ContentValues
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -12,18 +14,19 @@ import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.product_pager.view.*
 import me.vanjavk.recenzo.R
+import me.vanjavk.recenzo.RECENZO_PROVIDER_CONTENT_URI
+import me.vanjavk.recenzo.framework.updateProductRating
 import me.vanjavk.recenzo.model.Product
 import java.io.File
 
 
-class ProductPagerAdapter(private val items: MutableList<Product>, private val context: Context)
+class ProductPagerAdapter(private val products: MutableList<Product>, private val context: Context)
     : RecyclerView.Adapter<ProductPagerAdapter.ViewHolder>(){
 
     // vise nije static -> moguc je memory leak
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         private val ivItem: ImageView = itemView.findViewById(R.id.ivItem)
-        private val ivRead: ImageView = itemView.findViewById(R.id.ivRead)
         private val tvBarcode: TextView = itemView.findViewById(R.id.tvBarcode)
         private val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
         private val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
@@ -54,24 +57,37 @@ class ProductPagerAdapter(private val items: MutableList<Product>, private val c
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var item = items[position]
+        var product = products[position]
 
-//        holder.itemView.ivRead.setOnClickListener {
-//            item.read = !item.read
-//            context.contentResolver.update(
-//                ContentUris.withAppendedId(RECENZO_PROVIDER_CONTENT_URI, item._id!!),
-//                ContentValues().apply {
-//                    put(Product::read.name, item.read)
-//                },
-//                null,
-//                null
-//            )
-//            notifyItemChanged(position) // observable
-//        }
-        holder.bind(item)
+        holder.itemView.ivStar1.setOnClickListener {
+            product.rating = 1;
+            updateProductRating(context,product)
+            notifyItemChanged(position) // observable
+        }
+        holder.itemView.ivStar2.setOnClickListener {
+            product.rating = 2;
+            updateProductRating(context,product)
+            notifyItemChanged(position) // observable
+        }
+        holder.itemView.ivStar3.setOnClickListener {
+            product.rating = 3;
+            updateProductRating(context,product)
+            notifyItemChanged(position) // observable
+        }
+        holder.itemView.ivStar4.setOnClickListener {
+            product.rating = 4;
+            updateProductRating(context,product)
+            notifyItemChanged(position) // observable
+        }
+        holder.itemView.ivStar5.setOnClickListener {
+            product.rating = 5;
+            updateProductRating(context,product)
+            notifyItemChanged(position) // observable
+        }
+        holder.bind(product)
     }
 
-    override fun getItemCount() = items.size
+    override fun getItemCount() = products.size
 
 
 }

@@ -7,6 +7,7 @@
         android:fromDegrees="0"
         android:toDegrees="359"
         android:pivotX="50%"
+        android:interpolator="@android:anim/bounce_interpolator"
         android:pivotY="53%"
         android:duration="2000"
         android:repeatCount="infinite"/>

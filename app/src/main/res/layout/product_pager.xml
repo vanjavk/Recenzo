@@ -2,9 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    android:theme="@style/AppTheme">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:padding="@dimen/paddingItemPager"
@@ -14,7 +12,7 @@
 
         <ImageView
             android:id="@+id/ivItem"
-            tools:src="@drawable/flat_about"
+            tools:src="@drawable/star"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ivHeight" />
 
@@ -32,11 +30,35 @@
                 android:layout_height="wrap_content" />
 
             <ImageView
-                android:id="@+id/ivRead"
-                tools:src="@drawable/red_flag"
+                android:id="@+id/ivStar1"
+                tools:src="@drawable/rating_star"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content" />
+                android:layout_height="30dp"
+                android:layout_weight="1" />
+            <ImageView
+                android:id="@+id/ivStar2"
+                tools:src="@drawable/rating_star"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1" />
+            <ImageView
+                android:id="@+id/ivStar3"
+                tools:src="@drawable/rating_star"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1" />
+            <ImageView
+                android:id="@+id/ivStar4"
+                tools:src="@drawable/rating_star"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1" />
+            <ImageView
+                android:id="@+id/ivStar5"
+                tools:src="@drawable/rating_star"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1" />
 
 
         </LinearLayout>

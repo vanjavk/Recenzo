@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawerLayout"
-    tools:context=".HostActivity"
-
-    android:theme="@style/AppTheme">
+    tools:context=".HostActivity">
 
     <fragment
         android:id="@+id/navHostFragment"
@@ -19,8 +17,8 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
-        android:layout_width="162dp"
-        android:layout_height="240dp"
+        android:layout_width="@dimen/navMenuWidth"
+        android:layout_height="@dimen/navMenuHeight"
         android:layout_gravity="start"
         app:itemTextColor="@drawable/navigation_text_color"
         app:headerLayout="@layout/navigation_header"

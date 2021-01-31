@@ -8,28 +8,19 @@ import android.content.pm.PackageManager
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
-import android.os.StrictMode
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.Detector.Detections
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
-import kotlinx.android.synthetic.main.fragment_products.*
 import kotlinx.android.synthetic.main.fragment_scan.*
-import kotlinx.android.synthetic.main.product_pager.*
-import me.vanjavk.recenzo.framework.fetchItems
-import me.vanjavk.recenzo.framework.setBooleanPreference
-import me.vanjavk.recenzo.framework.startActivity
 import me.vanjavk.recenzo.items.ITEM_BARCODE
-import me.vanjavk.recenzo.items.ProductAdapter
 import me.vanjavk.recenzo.items.ProductPagerActivity
 import me.vanjavk.recenzo.model.Product
 import java.io.IOException
@@ -112,22 +103,7 @@ class ScanFragment : Fragment() {
         }
     }
 
-    private fun loadData() {
-        val jsonResponse = URL("https://privateip1337.lets.ee:8443/product").readText()
-        //println(jsonResponse)
-//        val obj: Product = Json.decodeFromString(
-//            Product.serializer(),
-//            jsonResponse
-//        )
-//        //println(obj)
-//
-//        tvDescription.text = obj.description
-//        tvTitle.text = obj.id.toString()
-    }
-
     private fun initialiseDetectorsAndSources() {
-
-        //Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
         barcodeDetector = BarcodeDetector.Builder(context)
             .setBarcodeFormats(Barcode.ALL_FORMATS)
             .build()
@@ -157,7 +133,6 @@ class ScanFragment : Fragment() {
                     e.printStackTrace()
                 }
             }
-
             override fun surfaceChanged(
                 holder: SurfaceHolder,
                 format: Int,
@@ -173,8 +148,7 @@ class ScanFragment : Fragment() {
         barcodeDetector.setProcessor(object : Detector.Processor<Barcode> {
             override fun release() {
                 // Toast.makeText(getApplicationContext(), "To prevent memory leaks barcode scanner has been stopped", Toast.LENGTH_SHORT).show();
-            }
-
+                }
             override fun receiveDetections(detections: Detections<Barcode>) {
                 val barcodes = detections.detectedItems
                 if (barcodes.size() != 0) {

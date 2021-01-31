@@ -71,15 +71,18 @@ class RecenzoFetcher(private val context: Context) {
         GlobalScope.launch {
             recenzoItems.forEach {
                 println(it)
-                val picturePath =
-                    downloadImageAndStore(context, it.picturePath, it.title.replace(" ", "_"))
-                val values = ContentValues().apply {
-                    put(Product::barcode.name, it.barcode)
-                    put(Product::title.name, it.title)
-                    put(Product::description.name, it.description)
-                    put(Product::picturePath.name, picturePath ?: "")
+                var picturePath :String? = null
+                try {
+                    picturePath = downloadImageAndStore(context, it.picturePath, it.title.replace(" ", "_"))
+                }finally {
+                    val values = ContentValues().apply {
+                        put(Product::barcode.name, it.barcode)
+                        put(Product::title.name, it.title)
+                        put(Product::description.name, it.description)
+                        put(Product::picturePath.name, picturePath ?: "")
+                    }
+                    context.contentResolver.insert(RECENZO_PROVIDER_CONTENT_URI, values)
                 }
-                context.contentResolver.insert(RECENZO_PROVIDER_CONTENT_URI, values)
             }
             // obavijesti da si gotov
             context.sendBroadcast<RecenzoReceiver>()

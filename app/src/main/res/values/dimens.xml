@@ -3,7 +3,7 @@
     <dimen name="splashPaddingMain">30dp</dimen>
     <dimen name="splashIvHeight">400dp</dimen>
     <dimen name="splashTextSize">30sp</dimen>
-    <dimen name="nvMarginTop">25dp</dimen>
+    <dimen name="nvMarginTop">15dp</dimen>
     <dimen name="heightNavHeader">100dp</dimen>
     <dimen name="widthNavHeader">150dp</dimen>
     <dimen name="ivSize">50dp</dimen>
@@ -17,4 +17,11 @@
     <dimen name="cornerRadius">9dp</dimen>
     <dimen name="paddingMain">10dp</dimen>
     <dimen name="recenzoSplashText">70sp</dimen>
+    <dimen name="navMenuWidth">162dp</dimen>
+    <dimen name="navMenuHeight">280dp</dimen>
+    <dimen name="btnMargin">30dp</dimen>
+    <dimen name="btnHeight">55dp</dimen>
+    <dimen name="btnMarginTop">5dp</dimen>
+    <dimen name="btnTextSize">25sp</dimen>
+    <dimen name="btnPadding">5dp</dimen>
 </resources>

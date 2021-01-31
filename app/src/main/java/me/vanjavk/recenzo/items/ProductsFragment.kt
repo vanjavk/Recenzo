@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_products.*
 import me.vanjavk.recenzo.R
-import me.vanjavk.recenzo.framework.fetchItems
+import me.vanjavk.recenzo.framework.fetchProducts
 import me.vanjavk.recenzo.model.Product
 
 
@@ -20,7 +20,7 @@ class ProductsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        products = requireContext().fetchItems()
+        products = requireContext().fetchProducts()
         return inflater.inflate(R.layout.fragment_products, container, false)
     }
 

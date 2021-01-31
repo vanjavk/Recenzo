@@ -6,6 +6,6 @@
     android:layout_height="match_parent"
     android:id="@+id/viewPager"
     tools:context=".items.ProductPagerActivity"
-    android:theme="@style/AppTheme">
+>
 
 </androidx.viewpager2.widget.ViewPager2>

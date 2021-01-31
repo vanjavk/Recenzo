@@ -9,7 +9,7 @@
         android:id="@+id/menuScan"
         android:label="@string/scan"
         android:name="me.vanjavk.recenzo.ScanFragment"
-        tools:layout="@layout/fragment_products"/>
+        tools:layout="@layout/fragment_scan"/>
 
     <fragment
         android:id="@+id/menuItems"

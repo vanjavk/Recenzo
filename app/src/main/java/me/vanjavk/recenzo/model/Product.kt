@@ -5,5 +5,6 @@ data class Product(
     val barcode: String,
     val title: String,
     val description: String,
-    val picturePath: String
+    val picturePath: String,
+    var rating: Int = 0
 )
