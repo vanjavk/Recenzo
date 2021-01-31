@@ -14,7 +14,8 @@
             android:id="@+id/ivItem"
             tools:src="@drawable/star"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ivHeight" />
+            android:layout_height="match_parent"
+             />
 
         <LinearLayout
             android:layout_marginTop="@dimen/marginTopItemPager"
@@ -31,33 +32,33 @@
 
             <ImageView
                 android:id="@+id/ivStar1"
-                tools:src="@drawable/rating_star"
+                android:src="@drawable/rating_star"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/heightRatingStar"
                 android:layout_weight="1" />
             <ImageView
                 android:id="@+id/ivStar2"
-                tools:src="@drawable/rating_star"
+                android:src="@drawable/rating_star"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/heightRatingStar"
                 android:layout_weight="1" />
             <ImageView
                 android:id="@+id/ivStar3"
-                tools:src="@drawable/rating_star"
+                android:src="@drawable/rating_star"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/heightRatingStar"
                 android:layout_weight="1" />
             <ImageView
                 android:id="@+id/ivStar4"
-                tools:src="@drawable/rating_star"
+                android:src="@drawable/rating_star"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/heightRatingStar"
                 android:layout_weight="1" />
             <ImageView
                 android:id="@+id/ivStar5"
-                tools:src="@drawable/rating_star"
+                android:src="@drawable/rating_star"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/heightRatingStar"
                 android:layout_weight="1" />
 
 

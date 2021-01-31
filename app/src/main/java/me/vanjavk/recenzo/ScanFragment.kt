@@ -38,11 +38,6 @@ class ScanFragment : Fragment() {
     private lateinit var barcodeText: TextView
     private lateinit var barcodeData: String
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
 
     override fun onCreateView(
 
@@ -54,24 +49,12 @@ class ScanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        setContentView(R.layout.fragment_scan)
-
         toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 100)
         surfaceView = surface_view
         barcodeText = barcode_text
 
-
-
         setupListeners()
         initialiseDetectorsAndSources()
-
-//        val productAdapter = ProductAdapter(products, requireContext())
-//        rvItems.apply {
-//            layoutManager = LinearLayoutManager(activity)
-//            adapter = productAdapter
-//        }
-
     }
 
     private fun setupListeners() {

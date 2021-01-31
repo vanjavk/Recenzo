@@ -2,25 +2,50 @@ package me.vanjavk.recenzo.framework
 
 import android.app.Activity
 import android.content.*
+
+import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.preference.PreferenceManager
+
+
+import me.vanjavk.recenzo.R
+
 import me.vanjavk.recenzo.RECENZO_PROVIDER_CONTENT_URI
+import me.vanjavk.recenzo.items.ProductPagerAdapter
 import me.vanjavk.recenzo.model.Product
 
 
 fun View.applyAnimation(resourceId: Int) =
     startAnimation(AnimationUtils.loadAnimation(context, resourceId))
 
-inline fun<reified T: Activity> Context.startActivity() = startActivity(Intent(this, T::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+inline fun<reified T: Activity> Context.startActivity() = startActivity(Intent(this, T::class.java).addFlags(
+    Intent.FLAG_ACTIVITY_NEW_TASK))
 
 inline fun<reified T: Activity> Context.startActivity(key: String, value: Int) = startActivity(Intent(this, T::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).apply { putExtra(key, value) })
 inline fun<reified T: Activity> Context.startActivity(key: String, value: String) = startActivity(Intent(this, T::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).apply { putExtra(key, value) })
 
 
 inline fun<reified T: BroadcastReceiver> Context.sendBroadcast() = sendBroadcast(Intent(this, T::class.java))
+
+inline fun ProductPagerAdapter.ViewHolder.updateRatingVisual(productRating: Int) {
+    for (rating in 0..productRating)when(rating){
+        0->{
+            ivStar1.setColorFilter(Color.BLACK)
+            ivStar2.setColorFilter(Color.BLACK)
+            ivStar3.setColorFilter(Color.BLACK)
+            ivStar4.setColorFilter(Color.BLACK)
+            ivStar5.setColorFilter(Color.BLACK)
+        }
+        1->ivStar1.setColorFilter(Color.YELLOW)
+        2->ivStar2.setColorFilter(Color.YELLOW)
+        3->ivStar3.setColorFilter(Color.YELLOW)
+        4->ivStar4.setColorFilter(Color.YELLOW)
+        5->ivStar5.setColorFilter(Color.YELLOW)
+    }
+}
 
 
 
@@ -72,6 +97,7 @@ fun Context.fetchProducts() : MutableList<Product> {
                     cursor.getString(cursor.getColumnIndex(Product::title.name)),
                     cursor.getString(cursor.getColumnIndex(Product::description.name)),
                     cursor.getString(cursor.getColumnIndex(Product::picturePath.name)),
+                    cursor.getInt(cursor.getColumnIndex(Product::rating.name)),
                 )
             )
         }

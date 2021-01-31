@@ -3,6 +3,7 @@ package me.vanjavk.recenzo.items
 import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.product_pager.view.*
 import me.vanjavk.recenzo.R
 import me.vanjavk.recenzo.RECENZO_PROVIDER_CONTENT_URI
 import me.vanjavk.recenzo.framework.updateProductRating
+import me.vanjavk.recenzo.framework.updateRatingVisual
 import me.vanjavk.recenzo.model.Product
 import java.io.File
 
@@ -30,6 +32,11 @@ class ProductPagerAdapter(private val products: MutableList<Product>, private va
         private val tvBarcode: TextView = itemView.findViewById(R.id.tvBarcode)
         private val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
         private val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
+        public val ivStar1: ImageView = itemView.findViewById(R.id.ivStar1)
+        public val ivStar2: ImageView = itemView.findViewById(R.id.ivStar2)
+        public val ivStar3: ImageView = itemView.findViewById(R.id.ivStar3)
+        public val ivStar4: ImageView = itemView.findViewById(R.id.ivStar4)
+        public val ivStar5: ImageView = itemView.findViewById(R.id.ivStar5)
 
         // bind se kontinuirano poziva za svaki od positiona
         fun bind(product: Product) {
@@ -38,12 +45,24 @@ class ProductPagerAdapter(private val products: MutableList<Product>, private va
                 .error(R.drawable.star)
                 .transform(RoundedCornersTransformation(50, 5))
                 .into(ivItem)
-//            ivRead.setImageResource(if (product.read) R.drawable.green_flag else R.drawable.red_flag)
             tvBarcode.text = product.barcode
             tvTitle.text = product.title
             tvDescription.text = product.description
-
-
+            updateRatingVisual(product.rating)
+//            for (rating in 0..product.rating)when(rating){
+//                0->{
+//                    this.ivStar1.setColorFilter(Color.BLACK)
+//                    ivStar2.setColorFilter(Color.BLACK)
+//                    ivStar3.setColorFilter(Color.BLACK)
+//                    ivStar4.setColorFilter(Color.BLACK)
+//                    ivStar5.setColorFilter(Color.BLACK)
+//                }
+//                1->ivStar1.setColorFilter(Color.YELLOW)
+//                2->ivStar2.setColorFilter(Color.YELLOW)
+//                3->ivStar3.setColorFilter(Color.YELLOW)
+//                4->ivStar4.setColorFilter(Color.YELLOW)
+//                5->ivStar5.setColorFilter(Color.YELLOW)
+//            }
         }
 
     }
@@ -51,6 +70,7 @@ class ProductPagerAdapter(private val products: MutableList<Product>, private va
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.product_pager, parent, false)
+
 
 
         return ViewHolder(itemView)

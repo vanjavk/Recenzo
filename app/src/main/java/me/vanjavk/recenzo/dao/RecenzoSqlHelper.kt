@@ -10,14 +10,14 @@ import me.vanjavk.recenzo.model.Product
 
 private const val DB_NAME = "products.db"
 private const val DB_VERSION = 1
-private const val TABLE_NAME = "items"
+private const val TABLE_NAME = "products"
 private val CREATE_TABLE = "create table $TABLE_NAME( " +
         "${Product::_id.name} integer primary key autoincrement, " +
         "${Product::barcode.name} text not null, " +
         "${Product::title.name} text not null, " +
         "${Product::description.name} text not null, " +
-        "${Product::picturePath.name} text not null " +
-        "${Product::rating.name} integer not null" +
+        "${Product::picturePath.name} text not null, " +
+        "${Product::rating.name} integer default 0" +
         ")"
 private const val DROP_TABLE = "drop table $TABLE_NAME"
 

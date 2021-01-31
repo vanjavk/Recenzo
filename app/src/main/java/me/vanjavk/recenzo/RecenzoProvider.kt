@@ -10,18 +10,18 @@ import java.lang.IllegalArgumentException
 
 
 private const val AUTHORITY = "me.vanjavk.recenzo.api.provider"
-private const val PATH = "items"
+private const val PATH = "products"
 val RECENZO_PROVIDER_CONTENT_URI: Uri = Uri.parse("content://$AUTHORITY/$PATH")
 
 // content://hr.algebra.nasa.api.provider/items delete
 // content://hr.algebra.nasa.api.provider/items/1 delete
 // rest - crud - URIMatcher!!
 
-private const val ITEMS = 10
-private const val ITEM_ID = 20
+private const val PRODUCTS = 10
+private const val PRODUCT_ID = 20
 private val URI_MATCHER = with(UriMatcher(UriMatcher.NO_MATCH)) {
-    addURI(AUTHORITY, PATH, ITEMS) //content://hr.algebra.nasa.api.provider/items
-    addURI(AUTHORITY, "$PATH/#", ITEM_ID) //content://hr.algebra.nasa.api.provider/items/1
+    addURI(AUTHORITY, PATH, PRODUCTS) //content://hr.algebra.nasa.api.provider/items
+    addURI(AUTHORITY, "$PATH/#", PRODUCT_ID) //content://hr.algebra.nasa.api.provider/items/1
     this
 }
 private const val CONTENT_DIR_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + AUTHORITY + "/" + PATH
@@ -33,8 +33,8 @@ class RecenzoProvider : ContentProvider() {
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
         when(URI_MATCHER.match(uri)) {
-            ITEMS -> return repository.delete(selection, selectionArgs)
-            ITEM_ID -> {
+            PRODUCTS -> return repository.delete(selection, selectionArgs)
+            PRODUCT_ID -> {
                 val id = uri.lastPathSegment // 1
                 if (id != null) {
                     return repository.delete("${Product::_id.name}=?", arrayOf(id))
@@ -45,8 +45,8 @@ class RecenzoProvider : ContentProvider() {
 
     override fun getType(uri: Uri): String? {
         when(URI_MATCHER.match(uri)) {
-            ITEMS -> return CONTENT_DIR_TYPE
-            ITEM_ID -> return CONTENT_ITEM_TYPE
+            PRODUCTS -> return CONTENT_DIR_TYPE
+            PRODUCT_ID -> return CONTENT_ITEM_TYPE
         }
         throw IllegalArgumentException("Wrong URI")
     }
@@ -74,8 +74,8 @@ class RecenzoProvider : ContentProvider() {
         selectionArgs: Array<String>?
     ): Int {
         when(URI_MATCHER.match(uri)){
-            ITEMS -> return repository.update(values, selection, selectionArgs)
-            ITEM_ID -> {
+            PRODUCTS -> return repository.update(values, selection, selectionArgs)
+            PRODUCT_ID -> {
                 val id = uri.lastPathSegment
                 if (id != null)
                 {

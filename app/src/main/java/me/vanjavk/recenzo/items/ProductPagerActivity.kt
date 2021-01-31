@@ -51,9 +51,11 @@ class ProductPagerActivity() : AppCompatActivity() {
                     cursor.getInt(cursor.getColumnIndex(Product::rating.name)),
                 )
         }
+
         if (product!=null){
             products = mutableListOf(product)
-        }}
+        }
+        }
         viewPager.isUserInputEnabled = false;
         viewPager.adapter = ProductPagerAdapter(products, this)
         viewPager.currentItem = itemPosition

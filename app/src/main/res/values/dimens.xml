@@ -24,4 +24,5 @@
     <dimen name="btnMarginTop">5dp</dimen>
     <dimen name="btnTextSize">25sp</dimen>
     <dimen name="btnPadding">5dp</dimen>
+    <dimen name="heightRatingStar">30dp</dimen>
 </resources>
