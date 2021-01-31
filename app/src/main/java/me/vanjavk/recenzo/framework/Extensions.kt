@@ -89,7 +89,6 @@ fun Context.fetchProducts() : MutableList<Product> {
         null, null, null, null)
     if (cursor != null) {
         while(cursor.moveToNext()) {
-            println(cursor.getString(cursor.getColumnIndex(Product::barcode.name)))
             products.add(
                 Product(
                     cursor.getLong(cursor.getColumnIndex(Product::_id.name)),

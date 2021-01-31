@@ -11,7 +11,7 @@ import me.vanjavk.recenzo.framework.startActivity
 class RecenzoReceiver : BroadcastReceiver() { // BroadcastReceiver aint no Context
 
     override fun onReceive(context: Context, intent: Intent) {
-        context.setBooleanPreference(DATA_IMPORTED, true)
+
         context.startActivity<HostActivity>()
     }
 }

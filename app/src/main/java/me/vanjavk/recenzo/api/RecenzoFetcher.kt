@@ -9,9 +9,11 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
+import me.vanjavk.recenzo.DATA_IMPORTED
 import me.vanjavk.recenzo.RECENZO_PROVIDER_CONTENT_URI
 import me.vanjavk.recenzo.framework.fetchProducts
 import me.vanjavk.recenzo.framework.sendBroadcast
+import me.vanjavk.recenzo.framework.setBooleanPreference
 import me.vanjavk.recenzo.handler.downloadImageAndStore
 import me.vanjavk.recenzo.model.Product
 import okhttp3.MediaType
@@ -51,29 +53,19 @@ class RecenzoFetcher(private val context: Context) {
                 response: Response<List<RecenzoProduct>>
             ) {
                 if (response.body() != null) {
-                    try {
-                        if (context.fetchProducts().size == 0) {
-                            println("baza je prazna")
-                            populateItems(response.body()!!)
-                        } else {
-                            context.sendBroadcast<RecenzoReceiver>()
-                        }
-                    } catch (e: Exception) {
-                        try {
-                            context.contentResolver.delete(
-                                RECENZO_PROVIDER_CONTENT_URI, null, null
-                            )
-                        } finally {
-                            populateItems(response.body()!!)
-                        }
 
-                    }
+                    populateItems(response.body()!!)
+
                 }
             }
 
             override fun onFailure(call: Call<List<RecenzoProduct>>, t: Throwable) {
                 Log.d(javaClass.name, t.message, t)
-                Toast.makeText(context,"Internet connection failure. Try restarting application.", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    "Internet connection failure. Try restarting application.",
+                    Toast.LENGTH_LONG
+                ).show()
                 context.sendBroadcast<RecenzoReceiver>()
             }
         })
@@ -86,10 +78,11 @@ class RecenzoFetcher(private val context: Context) {
         GlobalScope.launch {
             recenzoItems.forEach {
                 println(it)
-                var picturePath :String? = null
+                var picturePath: String? = null
                 try {
-                    picturePath = downloadImageAndStore(context, it.picturePath, it.title.replace(" ", "_"))
-                }finally {
+                    picturePath =
+                        downloadImageAndStore(context, it.picturePath, it.title.replace(" ", "_"))
+                } finally {
                     val values = ContentValues().apply {
                         put(Product::barcode.name, it.barcode)
                         put(Product::title.name, it.title)
@@ -99,6 +92,7 @@ class RecenzoFetcher(private val context: Context) {
                     context.contentResolver.insert(RECENZO_PROVIDER_CONTENT_URI, values)
                 }
             }
+            context.setBooleanPreference(DATA_IMPORTED, true)
             // obavijesti da si gotov
             context.sendBroadcast<RecenzoReceiver>()
         }
