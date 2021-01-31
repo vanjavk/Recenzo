@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="me.vanjavk.recenzo">
 
 
@@ -35,7 +36,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ScanFragment"/>
+        <activity android:name=".ScanFragment"
+            tools:ignore="Instantiatable" />
 
         <activity android:name=".HostActivity" />
 

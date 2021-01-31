@@ -20,7 +20,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import java.lang.Exception
 
 class RecenzoFetcher(private val context: Context) {
 
@@ -54,23 +53,27 @@ class RecenzoFetcher(private val context: Context) {
                 if (response.body() != null) {
                     try {
                         if (context.fetchProducts().size == 0) {
+                            println("baza je prazna")
                             populateItems(response.body()!!)
-                        }else{
+                        } else {
                             context.sendBroadcast<RecenzoReceiver>()
                         }
                     } catch (e: Exception) {
-                        populateItems(response.body()!!)
+                        try {
+                            context.contentResolver.delete(
+                                RECENZO_PROVIDER_CONTENT_URI, null, null
+                            )
+                        } finally {
+                            populateItems(response.body()!!)
+                        }
+
                     }
                 }
             }
 
             override fun onFailure(call: Call<List<RecenzoProduct>>, t: Throwable) {
                 Log.d(javaClass.name, t.message, t)
-                Toast.makeText(
-                    context,
-                    "Internet connection failure. Try restarting application.",
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(context,"Internet connection failure. Try restarting application.", Toast.LENGTH_LONG).show()
                 context.sendBroadcast<RecenzoReceiver>()
             }
         })
@@ -83,11 +86,10 @@ class RecenzoFetcher(private val context: Context) {
         GlobalScope.launch {
             recenzoItems.forEach {
                 println(it)
-                var picturePath: String? = null
+                var picturePath :String? = null
                 try {
-                    picturePath =
-                        downloadImageAndStore(context, it.picturePath, it.title.replace(" ", "_"))
-                } finally {
+                    picturePath = downloadImageAndStore(context, it.picturePath, it.title.replace(" ", "_"))
+                }finally {
                     val values = ContentValues().apply {
                         put(Product::barcode.name, it.barcode)
                         put(Product::title.name, it.title)
