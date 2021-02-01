@@ -11,35 +11,23 @@ import java.io.File
 import java.io.FileOutputStream
 import java.net.HttpURLConnection
 
-private const val ARTICLE_PICTURE_WIDTH = 1000
-private const val ARTICLE_PICTURE_HEIGHT = 750
+//private const val ARTICLE_PICTURE_WIDTH = 1000
+//private const val ARTICLE_PICTURE_HEIGHT = 750
 private const val QUALITY = 100
 private const val TAG = "ImagesHandler"
 
 fun downloadImageAndStore(context: Context, url: String, fileName: String) : String? {
-    // ext
     var extension = "";
 //    try {
 //        extension = url.substring(url.lastIndexOf(".")); // .jpeg
 //    }catch (e: Exception){}
     val file: File = getFile(context, fileName, extension)
     try {
-        // moram otvoriti konekciju na url!!
         val con: HttpURLConnection = createGetHttpUrlConnection(url)
-        // inpustream prema url da citam
-        // outputstream prema file da pisem
         con.inputStream.use {`is` ->
             FileOutputStream(file).use {fos->
-                // dohvati bitmap s url
                 val bitmap = BitmapFactory.decodeStream(`is`)
-                // resize bitmap na 1000x750
-                val resizedBitmap : Bitmap = getResizedBitmap(
-                    bitmap,
-                    ARTICLE_PICTURE_WIDTH,
-                    ARTICLE_PICTURE_HEIGHT
-                )
-                // moram bitmap pretvorit u bajtove
-                val buffer: ByteArray = getBytesFromBitmap(resizedBitmap)
+                val buffer: ByteArray = getBytesFromBitmap(bitmap)
                 fos.write(buffer)
                 return file.absolutePath
             }

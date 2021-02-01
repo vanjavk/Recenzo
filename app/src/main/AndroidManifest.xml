@@ -41,7 +41,7 @@
 
         <activity android:name=".HostActivity" />
 
-        <activity android:name=".items.ProductPagerActivity"></activity>
+        <activity android:name=".products.ProductPagerActivity"></activity>
 
         <service
             android:name=".RecenzoService"

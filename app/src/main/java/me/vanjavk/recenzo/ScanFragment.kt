@@ -20,11 +20,10 @@ import com.google.android.gms.vision.Detector.Detections
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
 import kotlinx.android.synthetic.main.fragment_scan.*
-import me.vanjavk.recenzo.items.ITEM_BARCODE
-import me.vanjavk.recenzo.items.ProductPagerActivity
+import me.vanjavk.recenzo.products.ITEM_BARCODE
+import me.vanjavk.recenzo.products.ProductPagerActivity
 import me.vanjavk.recenzo.model.Product
 import java.io.IOException
-import java.net.URL
 
 
 class ScanFragment : Fragment() {
@@ -74,9 +73,7 @@ class ScanFragment : Fragment() {
                             cursor.getString(cursor.getColumnIndex(Product::description.name)),
                             cursor.getString(cursor.getColumnIndex(Product::picturePath.name)),
                         )
-
                     requireContext().startActivity<ProductPagerActivity>(ITEM_BARCODE, product.barcode)
-
                 } else {
                     Toast.makeText(requireContext(), "Product not in database", Toast.LENGTH_SHORT)
                         .show();
@@ -84,6 +81,9 @@ class ScanFragment : Fragment() {
             }
 
         }
+    }
+    override fun onRequestPermissionsResult() {
+        initialiseDetectorsAndSources()
     }
 
     private fun initialiseDetectorsAndSources() {

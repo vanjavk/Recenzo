@@ -11,10 +11,8 @@ import android.view.animation.AnimationUtils
 import androidx.preference.PreferenceManager
 
 
-import me.vanjavk.recenzo.R
-
 import me.vanjavk.recenzo.RECENZO_PROVIDER_CONTENT_URI
-import me.vanjavk.recenzo.items.ProductPagerAdapter
+import me.vanjavk.recenzo.products.ProductPagerAdapter
 import me.vanjavk.recenzo.model.Product
 
 

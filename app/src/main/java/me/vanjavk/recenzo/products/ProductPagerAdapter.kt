@@ -1,21 +1,16 @@
-package me.vanjavk.recenzo.items
+package me.vanjavk.recenzo.products
 
-import android.content.ContentUris
-import android.content.ContentValues
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.product_pager.view.*
 import me.vanjavk.recenzo.R
-import me.vanjavk.recenzo.RECENZO_PROVIDER_CONTENT_URI
 import me.vanjavk.recenzo.framework.updateProductRating
 import me.vanjavk.recenzo.framework.updateRatingVisual
 import me.vanjavk.recenzo.model.Product

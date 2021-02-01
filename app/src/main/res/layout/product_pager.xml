@@ -8,14 +8,17 @@
         android:padding="@dimen/paddingItemPager"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <ImageView
             android:id="@+id/ivItem"
-            tools:src="@drawable/star"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-             />
+            tools:src="@drawable/product"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:maxHeight="@dimen/maxImageSize"
+            android:adjustViewBounds="true" />
 
         <LinearLayout
             android:layout_marginTop="@dimen/marginTopItemPager"

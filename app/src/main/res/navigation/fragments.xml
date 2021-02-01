@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/menuItems"
         android:label="@string/products"
-        android:name="me.vanjavk.recenzo.items.ProductsFragment"
+        android:name="me.vanjavk.recenzo.products.ProductsFragment"
         tools:layout="@layout/fragment_products"/>
 
     <fragment

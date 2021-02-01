@@ -1,4 +1,4 @@
-package me.vanjavk.recenzo.items
+package me.vanjavk.recenzo.products
 
 import android.os.Bundle
 import android.view.MotionEvent
