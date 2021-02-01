@@ -82,7 +82,11 @@ class ScanFragment : Fragment() {
 
         }
     }
-    override fun onRequestPermissionsResult() {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         initialiseDetectorsAndSources()
     }
 
