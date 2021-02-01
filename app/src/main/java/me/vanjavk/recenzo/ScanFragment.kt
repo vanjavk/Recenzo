@@ -57,37 +57,57 @@ class ScanFragment : Fragment() {
     }
 
     private fun setupListeners() {
-        btnCamera.setOnClickListener { startActivity(Intent.makeRestartActivityTask(activity?.intent?.component)) }
+        btnCamera.setOnClickListener {
+//            startActivity(Intent.makeRestartActivityTask(activity?.intent?.component))
+            checkCameraPermissionsAndInitialize()
+        }
         btnViewProduct.setOnClickListener {
-            if (barcode_text.text != null) {
-                val cursor = requireContext().contentResolver.query(
-                    RECENZO_PROVIDER_CONTENT_URI,
-                    null, "barcode='${barcode_text.text}'", null, null
-                )
-                if (cursor != null && !(!cursor.moveToFirst() || cursor.getCount() == 0)) {
-                    val product =
-                        Product(
-                            cursor.getLong(cursor.getColumnIndex(Product::_id.name)),
-                            cursor.getString(cursor.getColumnIndex(Product::barcode.name)),
-                            cursor.getString(cursor.getColumnIndex(Product::title.name)),
-                            cursor.getString(cursor.getColumnIndex(Product::description.name)),
-                            cursor.getString(cursor.getColumnIndex(Product::picturePath.name)),
-                        )
-                    requireContext().startActivity<ProductPagerActivity>(ITEM_BARCODE, product.barcode)
-                } else {
-                    Toast.makeText(requireContext(), "Product not in database", Toast.LENGTH_SHORT)
-                        .show();
-                }
-            }
-
+            checkIfProductInDatabase()
         }
     }
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        initialiseDetectorsAndSources()
+
+    private fun checkIfProductInDatabase(){
+        if (barcode_text.text != null) {
+            val cursor = requireContext().contentResolver.query(
+                RECENZO_PROVIDER_CONTENT_URI,
+                null, "barcode='${barcode_text.text}'", null, null
+            )
+            if (cursor != null && !(!cursor.moveToFirst() || cursor.getCount() == 0)) {
+                val product =
+                    Product(
+                        cursor.getLong(cursor.getColumnIndex(Product::_id.name)),
+                        cursor.getString(cursor.getColumnIndex(Product::barcode.name)),
+                        cursor.getString(cursor.getColumnIndex(Product::title.name)),
+                        cursor.getString(cursor.getColumnIndex(Product::description.name)),
+                        cursor.getString(cursor.getColumnIndex(Product::picturePath.name)),
+                    )
+                requireContext().startActivity<ProductPagerActivity>(ITEM_BARCODE, product.barcode)
+            } else {
+                Toast.makeText(requireContext(), "Product not in database", Toast.LENGTH_SHORT)
+                    .show();
+            }
+        }
+    }
+    private fun checkCameraPermissionsAndInitialize(){
+        try {
+            if (context?.let {
+                    checkSelfPermission(
+                        it,
+                        Manifest.permission.CAMERA
+                    )
+                } == PackageManager.PERMISSION_GRANTED
+            ) {
+                cameraSource.start(surfaceView.holder)
+            } else {
+                ActivityCompat.requestPermissions(
+                    context as Activity,
+                    arrayOf(Manifest.permission.CAMERA),
+                    REQUEST_CAMERA_PERMISSION
+                )
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
     }
 
     private fun initialiseDetectorsAndSources() {
@@ -100,25 +120,7 @@ class ScanFragment : Fragment() {
             .build()
         surfaceView.holder.addCallback(object : SurfaceHolder.Callback {
             override fun surfaceCreated(holder: SurfaceHolder) {
-                try {
-                    if (context?.let {
-                            checkSelfPermission(
-                                it,
-                                Manifest.permission.CAMERA
-                            )
-                        } == PackageManager.PERMISSION_GRANTED
-                    ) {
-                        cameraSource.start(surfaceView.holder)
-                    } else {
-                        ActivityCompat.requestPermissions(
-                            context as Activity,
-                            arrayOf(Manifest.permission.CAMERA),
-                            REQUEST_CAMERA_PERMISSION
-                        )
-                    }
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
+                checkCameraPermissionsAndInitialize()
             }
             override fun surfaceChanged(
                 holder: SurfaceHolder,
