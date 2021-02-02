@@ -27,11 +27,11 @@ class ProductPagerAdapter(private val products: MutableList<Product>, private va
         private val tvBarcode: TextView = itemView.findViewById(R.id.tvBarcode)
         private val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
         private val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
-        public val ivStar1: ImageView = itemView.findViewById(R.id.ivStar1)
-        public val ivStar2: ImageView = itemView.findViewById(R.id.ivStar2)
-        public val ivStar3: ImageView = itemView.findViewById(R.id.ivStar3)
-        public val ivStar4: ImageView = itemView.findViewById(R.id.ivStar4)
-        public val ivStar5: ImageView = itemView.findViewById(R.id.ivStar5)
+        val ivStar1: ImageView = itemView.findViewById(R.id.ivStar1)
+        val ivStar2: ImageView = itemView.findViewById(R.id.ivStar2)
+        val ivStar3: ImageView = itemView.findViewById(R.id.ivStar3)
+        val ivStar4: ImageView = itemView.findViewById(R.id.ivStar4)
+        val ivStar5: ImageView = itemView.findViewById(R.id.ivStar5)
 
         // bind se kontinuirano poziva za svaki od positiona
         fun bind(product: Product) {
@@ -44,20 +44,6 @@ class ProductPagerAdapter(private val products: MutableList<Product>, private va
             tvTitle.text = product.title
             tvDescription.text = product.description
             updateRatingVisual(product.rating)
-//            for (rating in 0..product.rating)when(rating){
-//                0->{
-//                    this.ivStar1.setColorFilter(Color.BLACK)
-//                    ivStar2.setColorFilter(Color.BLACK)
-//                    ivStar3.setColorFilter(Color.BLACK)
-//                    ivStar4.setColorFilter(Color.BLACK)
-//                    ivStar5.setColorFilter(Color.BLACK)
-//                }
-//                1->ivStar1.setColorFilter(Color.YELLOW)
-//                2->ivStar2.setColorFilter(Color.YELLOW)
-//                3->ivStar3.setColorFilter(Color.YELLOW)
-//                4->ivStar4.setColorFilter(Color.YELLOW)
-//                5->ivStar5.setColorFilter(Color.YELLOW)
-//            }
         }
 
     }

@@ -44,15 +44,5 @@ class ProductAdapter(private val items: MutableList<Product>, private val contex
         holder.bind(items[position])
     }
 
-//    private fun deleteItem(position: Int) {
-//        val item = items[position]
-//        // cp:items/1
-//        context.contentResolver.delete(
-//            ContentUris.withAppendedId(RECENZO_PROVIDER_CONTENT_URI, item._id!!), null, null)
-//        File(item.picturePath).delete()
-//        items.removeAt(position) // makni ga iz viewa
-//        notifyDataSetChanged() // obavijesti adapter da je frajer removan
-//    }
-
     override fun getItemCount() = items.size
 }

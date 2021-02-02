@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import me.vanjavk.recenzo.DATA_IMPORTED
 import me.vanjavk.recenzo.RECENZO_PROVIDER_CONTENT_URI
-import me.vanjavk.recenzo.framework.fetchProducts
+import me.vanjavk.recenzo.RecenzoReceiver
 import me.vanjavk.recenzo.framework.sendBroadcast
 import me.vanjavk.recenzo.framework.setBooleanPreference
 import me.vanjavk.recenzo.handler.downloadImageAndStore

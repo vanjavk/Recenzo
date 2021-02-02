@@ -1,4 +1,4 @@
-package me.vanjavk.recenzo.api
+package me.vanjavk.recenzo
 
 import android.content.BroadcastReceiver
 import android.content.Context

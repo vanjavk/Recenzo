@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import me.vanjavk.recenzo.model.Product
 
 
-private const val DB_NAME = "products1.db"//ovo mora da je neki bug sa sqlite/androidom
+private const val DB_NAME = "products.db"//ovo mora da je neki bug sa sqlite/androidom
 private const val DB_VERSION = 1
 private const val TABLE_NAME = "products"
 private val CREATE_TABLE = "create table $TABLE_NAME( " +

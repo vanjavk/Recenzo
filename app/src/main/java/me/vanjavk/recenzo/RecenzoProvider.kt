@@ -12,16 +12,14 @@ import java.lang.IllegalArgumentException
 private const val AUTHORITY = "me.vanjavk.recenzo.api.provider"
 private const val PATH = "products"
 val RECENZO_PROVIDER_CONTENT_URI: Uri = Uri.parse("content://$AUTHORITY/$PATH")
-
-// content://hr.algebra.nasa.api.provider/items delete
-// content://hr.algebra.nasa.api.provider/items/1 delete
+// content://me.vanjavk.recenzo.api.provider/products delete
+// content://me.vanjavk.recenzo.api.provider/products/1 delete
 // rest - crud - URIMatcher!!
-
 private const val PRODUCTS = 10
 private const val PRODUCT_ID = 20
 private val URI_MATCHER = with(UriMatcher(UriMatcher.NO_MATCH)) {
-    addURI(AUTHORITY, PATH, PRODUCTS) //content://hr.algebra.nasa.api.provider/items
-    addURI(AUTHORITY, "$PATH/#", PRODUCT_ID) //content://hr.algebra.nasa.api.provider/items/1
+    addURI(AUTHORITY, PATH, PRODUCTS) //content://me.vanjavk.recenzo.api.provider/products
+    addURI(AUTHORITY, "$PATH/#", PRODUCT_ID) //content://me.vanjavk.recenzo.api.provider/products/1
     this
 }
 private const val CONTENT_DIR_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + AUTHORITY + "/" + PATH
@@ -51,8 +49,8 @@ class RecenzoProvider : ContentProvider() {
         throw IllegalArgumentException("Wrong URI")
     }
 
-    //hr.algebra.nasa.api.provider/items
-    //hr.algebra.nasa.api.provider/items/22
+    //me.vanjavk.recenzo.api.provider/products
+    //me.vanjavk.recenzo.api.provider/products/22
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
         val id = repository.insert(values)
         return ContentUris.withAppendedId(RECENZO_PROVIDER_CONTENT_URI, id)
