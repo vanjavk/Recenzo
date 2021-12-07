@@ -1,9 +1,10 @@
 package me.vanjavk.recenzo
 
-import me.vanjavk.recenzo.framework.startActivity
 import android.Manifest
+import android.R.attr.label
 import android.app.Activity
-import android.content.Intent
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.pm.PackageManager
 import android.media.AudioManager
 import android.media.ToneGenerator
@@ -13,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
@@ -20,9 +22,10 @@ import com.google.android.gms.vision.Detector.Detections
 import com.google.android.gms.vision.barcode.Barcode
 import com.google.android.gms.vision.barcode.BarcodeDetector
 import kotlinx.android.synthetic.main.fragment_scan.*
+import me.vanjavk.recenzo.framework.startActivity
+import me.vanjavk.recenzo.model.Product
 import me.vanjavk.recenzo.products.ITEM_BARCODE
 import me.vanjavk.recenzo.products.ProductPagerActivity
-import me.vanjavk.recenzo.model.Product
 import java.io.IOException
 
 
@@ -64,7 +67,22 @@ class ScanFragment : Fragment() {
         btnViewProduct.setOnClickListener {
             checkIfProductInDatabase()
         }
+        btnCopy.setOnClickListener {
+            copyToClipboard()
+        }
     }
+
+    private fun copyToClipboard() {
+        val clipboard = getSystemService(
+            requireContext(),
+            ClipboardManager::class.java
+        )
+        val clip = ClipData.newPlainText("Copied stuff", barcodeText.text)
+        if (clipboard != null) {
+            clipboard.setPrimaryClip(clip)
+        }
+    }
+
 
     private fun checkIfProductInDatabase(){
         if (barcode_text.text != null) {
@@ -122,6 +140,7 @@ class ScanFragment : Fragment() {
             override fun surfaceCreated(holder: SurfaceHolder) {
                 checkCameraPermissionsAndInitialize()
             }
+
             override fun surfaceChanged(
                 holder: SurfaceHolder,
                 format: Int,
@@ -137,7 +156,8 @@ class ScanFragment : Fragment() {
         barcodeDetector.setProcessor(object : Detector.Processor<Barcode> {
             override fun release() {
                 // Toast.makeText(getApplicationContext(), "To prevent memory leaks barcode scanner has been stopped", Toast.LENGTH_SHORT).show();
-                }
+            }
+
             override fun receiveDetections(detections: Detections<Barcode>) {
                 val barcodes = detections.detectedItems
                 if (barcodes.size() != 0) {

@@ -17,15 +17,28 @@
 
         />
 
-    <TextView
+    <EditText
         android:id="@+id/barcode_text"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="@dimen/btnMargin"
+        android:layout_marginRight="@dimen/btnMargin"
+        app:layout_constraintTop_toBottomOf="@id/surface_view"
+        android:layout_marginTop="@dimen/btnMarginTop"
+        android:text="Barcode number"
+        android:textSize="10sp"
+        android:padding="@dimen/btnPadding"/>
+
+    <Button
+        android:textColor="@color/white"
+        android:id="@+id/btnCopy"
+        android:text="Copy"
         android:layout_width="match_parent"
         android:layout_height="@dimen/btnHeight"
         android:layout_marginLeft="@dimen/btnMargin"
         android:layout_marginRight="@dimen/btnMargin"
         app:layout_constraintTop_toBottomOf="@id/surface_view"
         android:layout_marginTop="@dimen/btnMarginTop"
-        android:text="Barcode number"
         android:textSize="@dimen/btnTextSize"
         android:padding="@dimen/btnPadding"/>
 
