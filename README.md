@@ -2,7 +2,7 @@
 
 The application allows users to scan barcodes of products, look them up and rate them. On Scan screen user can use camera to scan barcode, once camera recognizes barcode it will make a beep sound and show barcode on screen. Clicking on button user will be able to see product's screen. On specific product screen user is able to rate it 1-5 stars. There is also a screen that shows a list of all products in database.
 <div align="center">
-  <img alt="Light" src="https://cdn.discordapp.com/attachments/900320752698531881/917737770171109386/recenzo.gif" >
+  <img alt="Light" src="https://cdn.discordapp.com/attachments/900320752698531881/917740320840638484/recenzo.gif" >
 </div>
 
 # Scan
