@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.database.Cursor
 
 interface RecenzoRepository {
-
     fun delete(selection: String?, selectionArgs: Array<String>?): Int
 
     fun insert(values: ContentValues?): Long
